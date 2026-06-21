@@ -1,1 +1,654 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aliquindoi · Nº 34 · Junio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--verde:#3a7d44;--verde-claro:#6ab04c;--verde-lima:#a8d96b;--morado:#7b2d8b;--morado-claro:#b57bee;--dorado:#c8a84b;--crema:#faf7f0;--gris-oscuro:#1a1a1a;--gris-medio:#4a4a4a;--gris-claro:#e8e4dc;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--crema);color:var(--gris-oscuro);overflow-x:hidden;}
+  .header-stripe{height:6px;background:linear-gradient(90deg,var(--morado) 0%,var(--verde) 50%,var(--verde-lima) 100%);}
+  header{background:var(--gris-oscuro);color:white;position:relative;overflow:hidden;}
+  .header-inner{display:grid;grid-template-columns:1fr auto;align-items:end;padding:3rem 4rem 2.5rem;gap:2rem;position:relative;z-index:1;}
+  .header-bg-text{position:absolute;top:-1rem;right:3rem;font-family:'Playfair Display',serif;font-size:clamp(8rem,18vw,16rem);font-weight:900;color:rgba(255,255,255,0.04);line-height:1;user-select:none;letter-spacing:-0.04em;}
+  .publication-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.25em;color:var(--verde-lima);text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:1rem;}
+  .publication-label::before{content:'';display:block;width:2rem;height:1px;background:var(--verde-lima);}
+  .header-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:900;line-height:.9;letter-spacing:-.03em;background:linear-gradient(135deg,#fff 0%,var(--verde-lima) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .header-subtitle{font-size:.95rem;color:rgba(255,255,255,.55);font-weight:300;margin-top:1rem;}
+  .header-meta{text-align:right;position:relative;z-index:1;}
+  .issue-numero-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.25em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:.25rem;}
+  .issue-number{font-family:'Playfair Display',serif;font-size:5rem;font-weight:700;color:var(--morado-claro);line-height:1;opacity:.7;}
+  .issue-date{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.4rem;}
+  .aniversario-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--morado),var(--verde));color:white;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1rem;border-radius:2rem;margin-top:1.5rem;}
+  .hero-portada{position:relative;height:100vh;min-height:600px;max-height:900px;overflow:hidden;}
+  .hero-portada img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.3) 40%,rgba(0,0,0,.85) 100%);}
+  .hero-content{position:absolute;bottom:0;left:0;right:0;padding:4rem;z-index:1;max-width:1100px;}
+  .hero-tag{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--verde-lima);text-transform:uppercase;margin-bottom:1rem;}
+  .hero-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:700;line-height:1.1;color:white;margin-bottom:1rem;}
+  .hero-headline em{font-style:italic;color:var(--verde-lima);}
+  .hero-body{color:rgba(255,255,255,.75);font-size:1rem;line-height:1.7;font-weight:300;max-width:700px;}
+  .stats-hero{background:linear-gradient(135deg,#111 0%,#1a2d1a 100%);padding:4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+  .stat-hero-item{text-align:center;}
+  .stat-hero-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:var(--verde-lima);line-height:1;}
+  .stat-hero-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.5rem;}
+  .section-wrap{padding:5rem 4rem;max-width:1200px;margin:0 auto;}
+  .section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--gris-claro);}
+  .section-number{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--morado);text-transform:uppercase;opacity:.6;}
+  .section-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gris-oscuro);}
+  .noticias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  .noticia-card{background:white;border-radius:1rem;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
+  .noticia-card:hover{transform:translateY(-4px);box-shadow:0 8px 40px rgba(0,0,0,.12);}
+  .noticia-card-accent{height:4px;background:linear-gradient(90deg,var(--verde),var(--verde-lima));}
+  .noticia-card-accent.morado{background:linear-gradient(90deg,var(--morado),var(--morado-claro));}
+  .noticia-card-body{padding:1.75rem;}
+  .noticia-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--verde);text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}
+  .noticia-tag.morado{color:var(--morado);} .noticia-tag::before{content:'';width:1rem;height:1px;background:currentColor;}
+  .noticia-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;line-height:1.3;color:var(--gris-oscuro);margin-bottom:.75rem;}
+  .noticia-text{font-size:.85rem;color:var(--gris-medio);line-height:1.65;font-weight:300;}
+  .foto-texto{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;margin-bottom:2.5rem;}
+  .texto-col p{font-size:.95rem;color:var(--gris-medio);line-height:1.75;font-weight:300;margin-bottom:1rem;}
+  .texto-col p strong{color:var(--gris-oscuro);font-weight:600;}
+  .eventos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+  .evento-destacado{background:white;border-radius:1rem;padding:2rem;box-shadow:0 2px 20px rgba(0,0,0,.06);border-left:4px solid var(--verde);}
+  .evento-destacado.morado{border-left-color:var(--morado);}
+  .evento-fecha{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--verde);text-transform:uppercase;margin-bottom:.5rem;}
+  .evento-fecha.morado{color:var(--morado);}
+  .evento-nombre{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gris-oscuro);margin-bottom:.75rem;}
+  .evento-desc{font-size:.85rem;color:var(--gris-medio);line-height:1.6;font-weight:300;}
+  .solicitudes-list{display:flex;flex-direction:column;gap:.9rem;}
+  .solicitud-item{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.25rem;background:white;border-radius:.75rem;box-shadow:0 1px 12px rgba(0,0,0,.05);}
+  .solicitud-icon{width:2.25rem;height:2.25rem;border-radius:.5rem;background:linear-gradient(135deg,var(--verde),var(--verde-claro));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+  .solicitud-icon.morado{background:linear-gradient(135deg,var(--morado),var(--morado-claro));}
+  .solicitud-text{font-size:.83rem;color:var(--gris-oscuro);line-height:1.5;}
+  .solicitud-text strong{font-weight:600;}
+  .actividades-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+  .timeline{position:relative;padding-left:1.5rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--verde),var(--morado));opacity:.3;}
+  .timeline-item{position:relative;margin-bottom:1.75rem;padding-left:1.25rem;}
+  .timeline-item::before{content:'';position:absolute;left:-1.65rem;top:.35rem;width:8px;height:8px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(58,125,68,.15);}
+  .timeline-date{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:var(--morado);text-transform:uppercase;margin-bottom:.3rem;}
+  .timeline-event{font-size:.9rem;color:var(--gris-oscuro);font-weight:500;line-height:1.4;}
+  .timeline-desc{font-size:.8rem;color:var(--gris-medio);margin-top:.25rem;line-height:1.5;font-weight:300;}
+  .timeline-link{display:inline-block;margin-top:.35rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.05em;color:var(--verde);text-decoration:none;border-bottom:1px solid rgba(58,125,68,.3);padding-bottom:.1rem;transition:border-color .2s;}
+  .timeline-link:hover{border-color:var(--verde);}
+  .aniversario-section{background:linear-gradient(135deg,#0d1a10 0%,#1a0d20 100%);padding:5rem 4rem;}
+  .aniversario-inner{max-width:1200px;margin:0 auto;}
+  .aniversario-section .section-header{border-bottom-color:rgba(255,255,255,.1);}
+  .aniversario-section .section-number{color:var(--dorado);opacity:.8;}
+  .aniversario-section .section-title{color:white;}
+  .aniversario-intro{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.75;font-weight:300;max-width:760px;margin-bottom:3rem;}
+  .foto-caption{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.5rem;text-align:center;}
+  .eventos-aniversario-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:2.5rem;}
+  .evento-aniversario{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.75rem;}
+  .ea-fecha{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--dorado);text-transform:uppercase;margin-bottom:.6rem;}
+  .ea-nombre{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:white;margin-bottom:.6rem;line-height:1.2;}
+  .ea-desc{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300;}
+  .ea-badge{display:inline-block;margin-top:.75rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2rem;background:rgba(200,168,75,.15);color:var(--dorado);border:1px solid rgba(200,168,75,.25);}
+  .conf-hecha{display:inline-block;margin-top:.5rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:2rem;background:rgba(168,217,107,.15);color:var(--verde-lima);border:1px solid rgba(168,217,107,.3);}
+  .conferencias-titulo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:white;margin-bottom:.5rem;margin-top:2.5rem;}
+  .conferencias-subtitulo{font-size:.85rem;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:2rem;}
+  .conferencias-list{display:flex;flex-direction:column;gap:1rem;}
+  .conferencia-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:.75rem;padding:1.4rem 1.75rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;}
+  .conf-fecha-col{text-align:center;min-width:4rem;}
+  .conf-fecha-day{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--dorado);line-height:1;}
+  .conf-fecha-mes{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.25rem;}
+  .conf-ponente{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:white;margin-bottom:.25rem;}
+  .conf-cargo{font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;line-height:1.4;}
+  .conf-tema{font-size:.85rem;color:var(--verde-lima);font-style:italic;margin-bottom:.35rem;}
+  .conf-presentador{font-size:.75rem;color:rgba(255,255,255,.35);}
+  .stats-section{background:var(--gris-oscuro);padding:5rem 4rem;}
+  .stats-inner{max-width:1200px;margin:0 auto;}
+  .stats-section .section-header{border-bottom-color:rgba(255,255,255,.1);}
+  .stats-section .section-number{color:var(--verde-lima);opacity:.7;}
+  .stats-section .section-title{color:white;}
+  .stats-total-banner{background:linear-gradient(135deg,var(--verde),#1a4d22);border-radius:1.5rem;padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+  .stats-total-text{}
+  .stats-total-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-bottom:.5rem;}
+  .stats-total-num{font-family:'Playfair Display',serif;font-size:5rem;font-weight:700;color:white;line-height:1;}
+  .stats-total-sub{font-size:.85rem;color:rgba(255,255,255,.5);margin-top:.5rem;}
+  .stats-total-icon{font-size:5rem;opacity:.3;}
+  .stats-grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:1.5rem;}
+  .stat-block{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.75rem;}
+  .stat-block-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--verde-lima);text-transform:uppercase;margin-bottom:1.25rem;}
+  .stat-bar-item{margin-bottom:.9rem;}
+  .stat-bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem;}
+  .stat-bar-name{font-size:.8rem;color:rgba(255,255,255,.7);}
+  .stat-bar-val{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--verde-lima);font-weight:500;}
+  .stat-bar-track{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;}
+  .stat-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--verde),var(--verde-lima));}
+  .stat-bar-fill.morado{background:linear-gradient(90deg,var(--morado),var(--morado-claro));}
+  .stat-big-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:var(--verde-lima);line-height:1;margin-bottom:.5rem;}
+  .programas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  .programa-card{border:1px solid var(--gris-claro);border-radius:1rem;overflow:hidden;background:white;}
+  .programa-header{padding:1.75rem;background:linear-gradient(135deg,var(--verde),#2a5d34);color:white;}
+  .programa-header.morado{background:linear-gradient(135deg,var(--morado),#5a1d6a);}
+  .programa-header.oscuro{background:linear-gradient(135deg,#2a3d2a,var(--gris-oscuro));}
+  .programa-icon{font-size:2rem;margin-bottom:.75rem;}
+  .programa-nombre{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;}
+  .programa-body{padding:1.5rem;}
+  .programa-desc{font-size:.85rem;color:var(--gris-medio);line-height:1.65;font-weight:300;}
+  .com-section{background:#f5f0e8;padding:5rem 4rem;}
+  .com-inner{max-width:1200px;margin:0 auto;}
+  .redes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem;}
+  .red-card{background:white;border-radius:1rem;padding:1.5rem;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06);transition:transform .2s;}
+  .red-card:hover{transform:translateY(-3px);}
+  .red-nombre{font-weight:600;font-size:.85rem;color:var(--gris-oscuro);margin-bottom:.3rem;}
+  .red-handle{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--verde);}
+  .section-divider{border:none;height:1px;background:var(--gris-claro);margin:0 4rem;}
+  .cta-section{background:linear-gradient(135deg,var(--morado) 0%,#3a0d45 50%,var(--gris-oscuro) 100%);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+  .cta-section::before{content:'50';position:absolute;font-family:'Playfair Display',serif;font-size:30rem;font-weight:900;color:rgba(255,255,255,.02);top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;user-select:none;}
+  .cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
+  .cta-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:white;line-height:1.1;margin-bottom:1rem;}
+  .cta-title em{font-style:italic;color:var(--morado-claro);}
+  .cta-text{color:rgba(255,255,255,.6);font-size:1rem;line-height:1.7;font-weight:300;margin-bottom:.75rem;}
+  .cta-highlight{color:var(--verde-lima);font-weight:600;font-size:1.1rem;margin-bottom:2.5rem;}
+  .cta-phone{display:inline-block;font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:white;margin-bottom:2.5rem;letter-spacing:.05em;}
+  .cta-btn{display:inline-block;background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:white;font-weight:600;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;padding:1rem 2.5rem;border-radius:3rem;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(58,125,68,.4);}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(58,125,68,.5);}
+  footer{background:#111;padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+  .footer-brand{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:white;}
+  .footer-brand small{display:block;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.3);font-weight:400;margin-top:.3rem;}
+  .footer-redaccion{font-size:.75rem;color:rgba(255,255,255,.3);text-align:right;line-height:1.5;}
+  #btn-pdf{position:fixed;bottom:2rem;right:2rem;z-index:9999;display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,#3a7d44,#6ab04c);color:white;border:none;border-radius:3rem;padding:.85rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 20px rgba(58,125,68,.45);transition:transform .2s,box-shadow .2s;}
+  #btn-pdf:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(58,125,68,.55);}
+  @media(max-width:900px){
+    .header-inner,.foto-texto,.eventos-grid,.actividades-layout,.stats-hero{grid-template-columns:1fr;}
+    .noticias-grid,.eventos-aniversario-grid,.programas-grid,.redes-grid,.stats-grid-4{grid-template-columns:1fr 1fr;}
+    .section-wrap,.aniversario-section,.com-section,.stats-section,.cta-section{padding:3rem 1.5rem;}
+    .hero-content{padding:2rem;} .section-divider{margin:0 1.5rem;} footer{padding:2rem 1.5rem;}
+    .conferencia-item,.foto-texto{grid-template-columns:1fr;}
+    .stats-total-banner{flex-direction:column;gap:1rem;text-align:center;}
+    .stats-total-num{font-size:3.5rem;}
+    .hero-portada{height:70vh;}
+  }
+  @media print{
+    #btn-pdf{display:none !important;} @page{size:A4;margin:0;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+    body{background:white !important;}
+    .noticia-card,.evento-destacado,.solicitud-item,.evento-aniversario,.conferencia-item,.stat-block,.programa-card{break-inside:avoid;page-break-inside:avoid;}
+    .section-header,h1,h2,h3{break-after:avoid;page-break-after:avoid;orphans:3;widows:3;}
+    p,.noticia-text,.evento-desc,.ea-desc,.conf-cargo,.texto-col p,.hero-body,.aniversario-intro{orphans:3;widows:3;}
+    .hero-portada{height:60vh;max-height:500px;}
+    .stats-hero{grid-template-columns:repeat(4,1fr);}
+    .actividades-layout,.foto-texto{grid-template-columns:1fr 1fr !important;}
+    .noticias-grid{grid-template-columns:1fr 1fr 1fr !important;}
+  }
+</style>
+</head>
+<body>
+<div class="header-stripe"></div>
+ 
+<header>
+  <div class="header-bg-text">34</div>
+  <div class="header-inner">
+    <div>
+      <p class="publication-label">Boletín mensual</p>
+      <h1 class="header-title">Aliquindoi</h1>
+      <p class="header-subtitle">Noticias, actividades y actualidad del Teléfono de la Esperanza de Málaga</p>
+    </div>
+    <div class="header-meta">
+      <div class="issue-numero-label">Revista número</div>
+      <div class="issue-number">34</div>
+      <div class="issue-date">Junio 2026</div>
+    </div>
+  </div>
+</header>
+ 
+<!-- HERO PORTADA CON FOTO -->
+<div class="hero-portada">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%235a1d6a' width='1200' height='800'/%3E%3C/svg%3E" alt="Portada Junio 2026">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">50º Aniversario · Actividades Mayo 2026</p>
+    <h2 class="hero-headline">Medio siglo <em>acompañando la esperanza</em></h2>
+    <p class="hero-body">Mayo de 2026 ha sido un mes intenso marcado por la conclusión del ciclo de conferencias del 50 aniversario, nuevas actividades en el programa Brújula de la Esperanza y el crecimiento de nuestros servicios de atención en crisis.</p>
+  </div>
+</div>
+ 
+<!-- ESTADÍSTICAS DESTACADAS -->
+<div class="stats-hero">
+  <div class="stat-hero-item">
+    <div class="stat-hero-num">1.100</div>
+    <div class="stat-hero-label">Llamadas atendidas</div>
+  </div>
+  <div class="stat-hero-item">
+    <div class="stat-hero-num">93</div>
+    <div class="stat-hero-label">Intervenciones chat</div>
+  </div>
+  <div class="stat-hero-item">
+    <div class="stat-hero-num">50</div>
+    <div class="stat-hero-label">Años de labor social</div>
+  </div>
+  <div class="stat-hero-item">
+    <div class="stat-hero-num">+500</div>
+    <div class="stat-hero-label">Voluntarios activos</div>
+  </div>
+</div>
+ 
+<!-- 01 · PRESENTACIÓN -->
+<div class="section-wrap">
+  <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Mes en contexto</h2></div>
+  
+  <div class="foto-texto">
+    <div>
+      <p>Mayo ha sido un mes de consolidación institucional y cierre de un importante ciclo de actividades conmemorativas. La organización continuó con la tramitación de proyectos de impacto social y reforzó su presencia en iniciativas de prevención del suicidio a nivel autonómico.</p>
+      <p>Destacan la conclusión del ciclo de conferencias del 50 Aniversario, la expansión de actividades dirigidas a mayores con la incorporación de nuevas modalidades (chi kung e intergeneracionalidad), y el avance significativo en la justificación de proyectos ante organismos financiadores clave como Unicaja.</p>
+    </div>
+    <div>
+      <p>La Brújula de la Esperanza continúa posicionándose como programa diferencial, acumulando experiencias que demuestran el impacto del trabajo comunitario con personas en situación de vulnerabilidad emocional. A nivel administrativo, se han gestionado alegaciones ante el Ayuntamiento y se ha fortalecido la coordinación con otras sedes del Teléfono de la Esperanza.</p>
+      <p>El mes cierra con la planificación de las próximas actividades del 50 Aniversario: una carrera solidaria colaborativa con Policía Nacional y una gala benéfica.</p>
+    </div>
+  </div>
+</div>
+ 
+<!-- 02 · ACTIVIDADES ADMINISTRACIÓN -->
+<div class="section-wrap">
+  <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Actividades administración</h2></div>
+ 
+  <div class="texto-col" style="margin-bottom:2rem;">
+    <p>Mayo ha combinado la finalización de tramitaciones administrativas con la ejecución de proyectos estratégicos. Se ha completado la justificación técnica, gráfica y económica del proyecto Chat de la Esperanza ante Unicaja, un hito importante para la consolidación de este canal de atención.</p>
+    <p>A nivel autonómico, se ha realizado la subsanación de la Línea 1 del proyecto de Grupos de Ayuda Mutua para la prevención del suicidio ante la Junta de Andalucía. Simultáneamente, ha continuado la tramitación del proyecto Brújula de la Esperanza dirigido a mayores y prevención de conducta suicida para la Fundación la Caixa.</p>
+  </div>
+ 
+  <div class="eventos-grid">
+    <div class="evento-destacado"><div class="evento-fecha">Junio 2026</div><div class="evento-nombre">Carrera Solidaria R091 · 11 de septiembre</div><p class="evento-desc">Colaboración con Policía Nacional. Llaveros solidarios a 2€. Recaudación destinada a servicios de prevención del suicidio.</p></div>
+    <div class="evento-destacado morado"><div class="evento-fecha morado">Próximo evento</div><div class="evento-nombre">Gala Benéfica 50 Aniversario · 5 de octubre</div><p class="evento-desc">Actividad conmemorativa de cierre del 50 Aniversario con recaudación solidaria para proyectos de atención en crisis.</p></div>
+  </div>
+ 
+  <div class="solicitudes-list" style="margin-top:1.5rem;">
+    <div class="solicitud-item"><div class="solicitud-icon">🏆</div><div class="solicitud-text">Entrega del proyecto <strong>Brújula de la Esperanza</strong> a la Fundación la Caixa — dirigido a mayores y prevención de conducta suicida</div></div>
+    <div class="solicitud-item"><div class="solicitud-icon morado">📞</div><div class="solicitud-text">Solicitud de <strong>5 premios Teléfono de la Esperanza Nacional</strong>: al Valor e Iniciativa, Transparencia, Comunicación, Voluntariado Joven y Compromiso Solidario</div></div>
+    <div class="solicitud-item"><div class="solicitud-icon">🌿</div><div class="solicitud-text">Solicitud de <strong>Premio Natura</strong></div></div>
+    <div class="solicitud-item"><div class="solicitud-icon morado">📋</div><div class="solicitud-text"><strong>Junta de Andalucía</strong> — Subsanación de Línea 1: Grupos de Ayuda Mutua para prevención del suicidio</div></div>
+    <div class="solicitud-item"><div class="solicitud-icon">💬</div><div class="solicitud-text"><strong>Unicaja</strong> — Justificación técnica, gráfica y económica del proyecto Chat de la Esperanza — Completada</div></div>
+    <div class="solicitud-item"><div class="solicitud-icon morado">🔶</div><div class="solicitud-text"><strong>Ayuntamiento de Málaga</strong> — Alegaciones por exclusión en listas provisionales</div></div>
+  </div>
+</div>
+ 
+<hr class="section-divider">
+ 
+<!-- 03 · EN MOVIMIENTO -->
+<div class="section-wrap">
+  <div class="section-header"><span class="section-number">03</span><h2 class="section-title">En movimiento</h2></div>
+  <div class="actividades-layout">
+    <div>
+      <p style="font-size:.85rem;color:var(--gris-medio);margin-bottom:1.75rem;font-weight:300;line-height:1.6;">Apariciones en medios de comunicación durante mayo — eventos destacados y presencia institucional.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">1 mayo</div>
+          <div class="timeline-event">Revista Urbanity</div>
+          <div class="timeline-desc">Cobertura especial: Día de Puertas Abiertas del 50 Aniversario</div>
+          <a href="https://revistaurbanity.com/sociedad/telefono-esperanza-malaga-50-aniversario/" target="_blank" rel="noopener" class="timeline-link">Leer noticia →</a>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">3 mayo</div>
+          <div class="timeline-event">Canal Sur TV · Solidarios</div>
+          <div class="timeline-desc">Programa especial sobre el trabajo social y la historia del Teléfono de la Esperanza</div>
+          <a href="https://www.canalsur.es/television/programas/solidarios/noticia/2269440.html" target="_blank" rel="noopener" class="timeline-link">Ver programa →</a>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">17 mayo</div>
+          <div class="timeline-event">Jornadas Red TALENTO</div>
+          <div class="timeline-desc">Universidad Europea. Encuentro con ~20 asociaciones para intercambio de buenas prácticas. Feria de voluntariado paralela.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">21 mayo</div>
+          <div class="timeline-event">Reunión Grupo Motor</div>
+          <div class="timeline-desc">Coordinación con otras sedes para organizar Campaña de Prevención del Suicidio 2026</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">29 mayo</div>
+          <div class="timeline-event">Reunión Rectorado</div>
+          <div class="timeline-desc">Universidad Europea. Negociación de convenio sobre voluntariado e integración comunitaria</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Fotos conferencias -->
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#7b2d8b,#6ab04c);border-radius:1rem;display:flex;align-items:center;justify-content:center;color:white;font-size:.9rem;margin-bottom:.75rem;">[Fotografía: Ciclo de conferencias concluido]</div>
+        <div class="foto-caption">Ciclo 50º Aniversario: Miguel Guerrero, Antonio Montiel, Mesa Redonda Deporte y Salud Mental</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#3a7d44,#2a5d34);border-radius:1rem;display:flex;align-items:center;justify-content:center;color:white;font-size:.9rem;margin-bottom:.75rem;">[Fotografía: Acto Jornadas Red TALENTO]</div>
+        <div class="foto-caption">Asistentes Jornadas Red TALENTO · Fundación Botín · Universidad Europea</div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- 04 · 50 ANIVERSARIO -->
+<div class="aniversario-section">
+  <div class="aniversario-inner">
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Ciclo 50º Aniversario: Una década de esperanza</h2></div>
+    
+    <p class="aniversario-intro">El ciclo de conferencias del 50 Aniversario ha alcanzado su conclusión en mayo de 2026. Cinco sesiones dedicadas a reflexionar sobre salud mental, tecnología, arte, deporte y vulnerabilidad han reunido a expertos, autoridades y público interesado en los temas fundamentales que guían el trabajo del Teléfono de la Esperanza.</p>
+ 
+    <!-- Conferencias COMPLETADAS -->
+    <div class="conferencias-titulo">Conferencias realizadas · Mayo 2026</div>
+    <div class="conferencias-list">
+      <div class="conferencia-item">
+        <div class="conf-fecha-col"><div class="conf-fecha-day">6</div><div class="conf-fecha-mes">May</div></div>
+        <div><div class="conf-ponente">Miguel Guerrero Díaz</div><div class="conf-cargo">Coordinador Autonómico del Plan de Prevención del Suicidio en Andalucía</div><div class="conf-tema">Salud mental en tiempos de incertidumbre: una lectura estructural y ética del malestar contemporáneo</div><div class="conf-presentador">Presentación: José Manuel Martín López, psicólogo</div><span class="conf-hecha">✓ Celebrada</span></div>
+      </div>
+      <div class="conferencia-item">
+        <div class="conf-fecha-col"><div class="conf-fecha-day">13</div><div class="conf-fecha-mes">May</div></div>
+        <div><div class="conf-ponente">Antonio Montiel González</div><div class="conf-cargo">Pintor malagueño especializado en el género del retrato</div><div class="conf-tema">Antonio Montiel, entre la pintura, lo mundano y el despertar interior</div><div class="conf-presentador">Presentación: Juan Sánchez, presidente</div><span class="conf-hecha">✓ Celebrada</span></div>
+      </div>
+      <div class="conferencia-item">
+        <div class="conf-fecha-col"><div class="conf-fecha-day">20</div><div class="conf-fecha-mes">May</div></div>
+        <div><div class="conf-ponente">Mesa redonda · Deporte y salud mental</div><div class="conf-cargo">Jorge Garbajosa (pte. FIBA Europa) · Isabel Sánchez (periodista deportiva) · Fernando González (psicólogo deportivo Málaga C.F.)</div><div class="conf-tema">Deporte y salud mental: cuerpo, mente y comunidad</div><span class="conf-hecha">✓ Celebrada</span></div>
+      </div>
+    </div>
+ 
+    <!-- Actividades BRÚJULA -->
+    <div class="conferencias-titulo" style="margin-top:2.5rem;">Brújula de la Esperanza · Nuevas iniciativas</div>
+    <div style="font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2rem;">Durante mayo, el programa Brújula de la Esperanza ha incorporado dos nuevas actividades dirigidas al grupo de mayores:</div>
+    <div class="eventos-aniversario-grid">
+      <div class="evento-aniversario">
+        <div class="ea-fecha">Mayo 2026 · Actividad nueva</div>
+        <div class="ea-nombre">Chi Kung para Mayores</div>
+        <p class="ea-desc">Arte milenario chino que combina movimientos suaves, respiración profunda y concentración mental. Su nombre significa "trabajo o dominio de la energía vital". Objetivo: estimular, equilibrar y fortalecer el cuerpo y la mente en un contexto de bienestar comunitario.</p>
+        <div class="ea-badge">Actividad en curso</div>
+      </div>
+      <div class="evento-aniversario">
+        <div class="ea-fecha">Mayo 2026 · Actividad nueva</div>
+        <div class="ea-nombre">Taller Intergeneracional de Dibujo</div>
+        <p class="ea-desc">Espacio compartido entre mayores y alumnos de Psicología para facilitar el intercambio intergeneracional, la creatividad y el reconocimiento mutuo. Fortalece vínculos comunitarios y reduce aislamiento.</p>
+        <div class="ea-badge">Iniciativa intergeneracional</div>
+      </div>
+    </div>
+ 
+    <!-- Próximos eventos del 50 -->
+    <div class="conferencias-titulo" style="margin-top:2.5rem;">Próximos eventos del 50 Aniversario</div>
+    <div class="eventos-aniversario-grid">
+      <div class="evento-aniversario">
+        <div class="ea-fecha">11 de septiembre · 2026</div>
+        <div class="ea-nombre">Carrera Solidaria R091 · Edición VIII</div>
+        <p class="ea-desc">Recorrido por la ciudad en colaboración con Policía Nacional. Llaveros solidarios a 2€. Recaudación destinada a servicios de prevención del suicidio y atención en crisis.</p>
+        <div class="ea-badge">En preparación</div>
+      </div>
+      <div class="evento-aniversario">
+        <div class="ea-fecha">5 de octubre · 2026</div>
+        <div class="ea-nombre">Gala Benéfica 50 Aniversario</div>
+        <p class="ea-desc">Evento de clausura con actos conmemorativos, reconocimiento a colaboradores y entidades socias, y recaudación solidaria para la consolidación de proyectos.</p>
+        <div class="ea-badge">En planificación</div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- 05 · ESTADÍSTICAS MAYO 2026 -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Atención en crisis · Mayo 2026</h2></div>
+ 
+    <div class="stats-total-banner">
+      <div class="stats-total-text">
+        <div class="stats-total-label">Total intervenciones · Mayo 2026</div>
+        <div class="stats-total-num">1.193</div>
+        <div class="stats-total-sub">Llamadas telefónicas + intervenciones por chat</div>
+      </div>
+      <div class="stats-total-icon">📞</div>
+    </div>
+ 
+    <div class="stats-grid-4">
+      <div class="stat-block">
+        <div class="stat-block-title">Canales de atención · Llamadas</div>
+        <div class="stat-bar-item">
+          <div class="stat-bar-label"><span class="stat-bar-name">Teléfono</span><span class="stat-bar-val">1.100</span></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill" style="width:92.2%"></div></div>
+        </div>
+        <div class="stat-bar-item">
+          <div class="stat-bar-label"><span class="stat-bar-name">Chat</span><span class="stat-bar-val">93</span></div>
+          <div class="stat-bar-track"><div class="stat-bar-fill morado" style="width:7.8%"></div></div>
+        </div>
+        <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:1rem;">Total de intervenciones por canal</p>
+      </div>
+ 
+      <div class="stat-block">
+        <div class="stat-block-title">Intervenciones por chat</div>
+        <div class="stat-big-num">93</div>
+        <p style="font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5;">Total de intervenciones realizadas a través del servicio de chat durante mayo de 2026. Canal en crecimiento.</p>
+      </div>
+    </div>
+ 
+    <!-- Desglose Chat por demográficos -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1.75rem;margin-bottom:1.5rem;">
+      <div class="stat-block-title" style="margin-bottom:1.5rem;">Chat · Desglose por sexo</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">No definido</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">21</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">22,58%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Hombre</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">29</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">31,18%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Mujer</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">43</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">46,24%</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Desglose Chat por edad -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1.75rem;margin-bottom:1.5rem;">
+      <div class="stat-block-title" style="margin-bottom:1rem;">Chat · Desglose por edad · <span style="color:#c8a84b;font-weight:600;">Dato relevante: mayoría hasta 18 años</span></div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.05);">El <strong style="color:rgba(255,255,255,.8);">25,97% de contactos por chat son menores de 18 años</strong>, lo que refleja la importancia de este canal para la población joven en situación de crisis o malestar emocional.</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">Hasta 18 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">20</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">25,97%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">19-25 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">12</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">15,58%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">26-35 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">14</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">18,18%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">36-45 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">6</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">7,79%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">46-55 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">10</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">12,99%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">Sin definir</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">15</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">19,48%</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Desglose LLAMADAS -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1.75rem;margin-bottom:1.5rem;">
+      <div class="stat-block-title" style="margin-bottom:1.5rem;">Llamadas · Desglose por sexo</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">No definido</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">50</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">5,01%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Hombre</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">446</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">44,64%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;text-align:center;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Mujer</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--verde-lima);">513</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.35rem;">50,35%</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Desglose LLAMADAS por edad -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1.75rem;margin-bottom:1.5rem;">
+      <div class="stat-block-title" style="margin-bottom:1.5rem;">Llamadas · Desglose por edad</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">Hasta 18 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">35</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">3,76%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">19-25 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">31</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">3,33%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">26-35 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">102</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">10,94%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">36-45 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">196</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">21,03%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">46-55 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">203</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">21,78%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">56-65 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">127</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">13,63%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">66-75 años</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">72</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">7,73%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">76 y más</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">19</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">2,04%</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:.5rem;padding:1rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);">Sin definir</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--verde-lima);">147</div>
+          </div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.3);">15,77%</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Problemáticas -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:.75rem;padding:1.75rem;">
+      <div class="stat-block-title" style="margin-bottom:1.5rem;">Llamadas · Desglose por problemática</div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;">
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Problemas psicológicos y psiquiátricos</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">326 (30,84%)</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Llamadas periféricas</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">420 (39,74%)</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Otros problemas</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">193 (18,26%)</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Problemas relacionales y/o familiares</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">98 (9,27%)</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Problemas asistenciales</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">17 (1,61%)</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1rem;background:rgba(255,255,255,.02);border-radius:.5rem;border:1px solid rgba(255,255,255,.05);">
+          <div style="font-size:.8rem;color:rgba(255,255,255,.7);">Problemas jurídicos</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--verde-lima);">3 (0,28%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- 06 · PROGRAMAS -->
+<div class="section-wrap">
+  <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Nuestros programas</h2></div>
+  <div class="programas-grid">
+    <div class="programa-card"><div class="programa-header"><div class="programa-icon">🧭</div><div class="programa-nombre">Brújula de la Esperanza</div></div><div class="programa-body"><p class="programa-desc">Programa de orientación y acompañamiento para personas en situación de vulnerabilidad emocional y social, facilitando herramientas de gestión y recursos comunitarios. Con nuevas iniciativas en chi kung e intergeneracionalidad.</p></div></div>
+    <div class="programa-card"><div class="programa-header morado"><div class="programa-icon">👥</div><div class="programa-nombre">Entreamigos</div></div><div class="programa-body"><p class="programa-desc">Espacio de encuentro y apoyo entre iguales, fomentando la conexión social y el acompañamiento comunitario para combatir el aislamiento y la soledad no deseada.</p></div></div>
+    <div class="programa-card"><div class="programa-header oscuro"><div class="programa-icon">🤝</div><div class="programa-nombre">Ayuda Mutua · Supervivencia al Suicidio</div></div><div class="programa-body"><p class="programa-desc">Grupo de apoyo mutuo para personas que han perdido a un ser querido por suicidio, ofreciendo un espacio seguro de escucha, comprensión y elaboración del duelo.</p></div></div>
+  </div>
+</div>
+ 
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Hay un teléfono donde tu voz se <em>escucha siempre</em></h2>
+    <p class="cta-text">El Teléfono de la Esperanza desarrolla sus actividades gracias a las aportaciones voluntarias de personas, empresas e instituciones que creen en nuestra labor social.</p>
+    <p class="cta-highlight">¿Sabías que donando sólo 10 € al mes puedes desgravar el 80% en la Renta? Unos 96 € anuales.</p>
+    <div class="cta-phone">📞 952 26 15 00</div><br>
+    <a href="https://telefonodelaesperanza.org/malaga/colabora" target="_blank" rel="noopener" class="cta-btn">Hazte soci@ · Ayúdanos a ayudar</a>
+  </div>
+</div>
+ 
+<footer>
+  <div class="footer-brand">Aliquindoi<small>Boletín mensual · Nº 34 · Junio 2026</small></div>
+  <div class="footer-redaccion">Equipo de redacción<br>Irene García · Manuel Plata · Alba Gálvez · Marta G. Aldana<br><span style="color:rgba(255,255,255,.15);font-size:.65rem;">Teléfono de la Esperanza de Málaga · 952 26 15 00</span></div>
+</footer>
+<div class="header-stripe"></div>
+ 
+<button id="btn-pdf" onclick="exportarPDF()" title="Exportar a PDF">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+  <span>Exportar PDF</span>
+</button>
+<script>
+  function exportarPDF(){var btn=document.getElementById('btn-pdf');btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Preparando...</span>';btn.style.opacity='0.7';btn.style.pointerEvents='none';setTimeout(function(){window.print();btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>Exportar PDF</span>';btn.style.opacity='1';btn.style.pointerEvents='auto';},400);}
+</script>
+</body>
+</html>
+ 
